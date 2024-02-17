@@ -1,4 +1,5 @@
 let wordComp = [];
+let prompt = '';
 let wordCompString = '';
 let wordMatched = [];
 const guesses = new Set();
@@ -119,10 +120,12 @@ function startHandler() {
   fetch('/images')
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       const len = Object.keys(data).length;
       gameImage = data[getRandomInt(len)];
       document.getElementById('game-image').src =
         'data:image/png;base64,' + gameImage.image['$binary'].base64;
+      prompt = gameImage['prompt'];
       wordComp = gameImage['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
     })
@@ -171,5 +174,8 @@ function openEndModal() {
   }
   const scoreText = document.querySelector('.total-score');
   scoreText.textContent = `Score: ${gameScore}`;
-  openModal('endModal');
+
+  const promptText = document.querySelector('.prompt');
+  promptText.textContent = `${prompt}`;
+  openModal("endModal");
 }
