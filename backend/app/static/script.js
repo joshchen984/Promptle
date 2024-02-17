@@ -55,6 +55,7 @@ async function checkSimilarity(word){
     //red
     createWordButtons(word, 'btn-bad');
   }
+  console.log(score);
   scoreDiv.textContent = `Score: ${score}`;
 }
 
@@ -70,10 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.querySelector('.btn-prompt').addEventListener('click', function () {
     submitHandler();
-  });
-
-  document.querySelector('.btn-start').addEventListener('click', function () {
-    startHandler();
   });
 
   document
@@ -123,27 +120,12 @@ function startHandler() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-<<<<<<< HEAD
-  openModal();
-  function openModal() {
-    var modal = document.getElementById("modal");
-    var overlay = document.getElementById("overlay");
-    modal.style.display = "block";
-    overlay.style.display = "block";
-  }
+  openModal("startModal");
 });
 
 function closeModal() {
   startHandler();
-  var modal = document.getElementById("modal");
-=======
-  openModal("startModal");
-
-});
-
-function closeModal() {
   var modal = document.getElementById("startModal");
->>>>>>> 1741aa47e95228b644bedaead5c0afe514d8609a
   var overlay = document.getElementById("overlay");
   modal.style.display = "none";
   overlay.style.display = "none";
