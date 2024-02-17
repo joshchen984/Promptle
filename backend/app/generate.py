@@ -16,7 +16,7 @@ def generate_prompt(keywords: str):
             },
             {
                 "role": "user",
-                "content": f"Generate a dall e prompt that incorporates the following keywords: [{keywordsArg}]",
+                "content": f"Generate a dall e prompt that incorporates the following keywords: [{keywords}]",
             },
         ],
         max_tokens=50,
