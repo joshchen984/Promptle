@@ -8,6 +8,8 @@ import spacy
 from flask_pymongo import PyMongo
 import json
 from bson import json_util
+import io
+import requests
 
 from app.generate import generate_image, generate_keywords, generate_prompt
 
@@ -26,7 +28,15 @@ def generate_game():
     keywords = generate_keywords()
     prompt = generate_prompt(keywords)
     image = generate_image(prompt)
-    image = {"keywords": keywords.split(","), "prompt": prompt, "image": image}
+
+    response = requests.get(image, timeout=10)
+
+    image = {
+        "keywords": keywords.split(","),
+        "prompt": prompt,
+        "image": io.BytesIO(response.content).getvalue(),
+    }
+
     mongo.db.images.insert_one(image)
     return json.loads(json_util.dumps(image))
 
