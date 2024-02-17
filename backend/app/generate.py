@@ -1,5 +1,6 @@
 import openai
 from dotenv import load_dotenv
+import re
 
 load_dotenv()
 client = openai.OpenAI()
@@ -35,7 +36,9 @@ def generate_keywords():
         ],
         max_tokens=30,
     )
-    return completion.choices[0].message.content
+    result = completion.choices[0].message.content
+    # Getting rid of whitespace around commas
+    return re.sub(r"\s*,\s*", ",", result)
 
 
 def generate_image(prompt):
