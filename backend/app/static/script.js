@@ -3,6 +3,7 @@ let wordCompString = '';
 let wordMatched = [];
 const gThresh = 0.8;
 const yThresh = 0.6;
+let gameImage = {};
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -11,12 +12,15 @@ function getRandomInt(max) {
 function similarity(word1, word2) {
   const url = `http://localhost:5000/similarity?word1=${word1}&word2=${word2}`;
   return fetch(url)
-    .then(response => response.text())
-    .then(similarityScore => {
-      return similarityScore; 
+    .then((response) => response.text())
+    .then((similarityScore) => {
+      return similarityScore;
     })
-    .catch(error => {
-      console.error('There has been a problem with your fetch operation:', error);
+    .catch((error) => {
+      console.error(
+        'There has been a problem with your fetch operation:',
+        error
+      );
     });
 }
 
@@ -28,7 +32,7 @@ function createWordButtons(words, colorClass) {
   return button
 }
 
-async function checkSimilarity(word){
+async function checkSimilarity(word) {
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
   const simScore = parseFloat(parts[0]).toFixed(2);
@@ -62,11 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (userInput !== '') {
       checkSimilarity(userInput);
       inputField.value = '';
-    } 
+    }
   }
 
   document.querySelector('.btn-prompt').addEventListener('click', function () {
     submitHandler();
+  });
+
+  document.querySelector('.btn-start').addEventListener('click', function () {
+    startHandler();
   });
 
   document
@@ -97,32 +105,34 @@ function timer() {
       openEndModal();
     }
   }, 1000);
-};
+}
 
 function startHandler() {
   fetch('/images')
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const len = Object.keys(data).length;
-      wordComp = data[getRandomInt(len)]["keywords"];
+      gameImage = data[getRandomInt(len)];
+      document.getElementById('game-image').src =
+        'data:image/png;base64,' + gameImage.image['$binary'].base64;
+      wordComp = gameImage['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
-      console.log(wordCompString);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error fetching images:', error);
     });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  openModal("startModal");
+  openModal('startModal');
 });
 
 function closeModal() {
   startHandler();
-  var modal = document.getElementById("startModal");
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "none";
-  overlay.style.display = "none";
+  var modal = document.getElementById('startModal');
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
 }
 
 function openModal(modal) {

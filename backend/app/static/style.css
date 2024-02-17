@@ -1,6 +1,6 @@
 body, html {
   font-family: Arial, sans-serif;
-  background-color: #5C5470;
+  background-color: #2596be;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,27 +9,54 @@ body, html {
   padding: 0;
 }
 
+.logo {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
 .h-pair {
   display: flex;
   justify-content: space-between; 
   position: relative; 
 }
 
-.word-buttons {
+.main-container {
   position: relative; 
   left: 45vh;
-  background-color: white;
   height: 58vh;
-  width: 20vh;
+  width: 20vh; /* Adjust height as needed */
+  background-color: #8077b3;
+  border-radius: 10px;
+}
+
+.word-buttons {
+  background-color: transparent;
+  position: relative; 
   border-radius: 8px;
   padding:4px;
   overflow-y: auto;
+}
+
+.word-buttons-title {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: large;
+    font-weight: 700;
 }
 
 .word-buttons button {
   display: block; 
   width: 100%; 
   margin-bottom: 10px; 
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .game-container {
@@ -48,22 +75,14 @@ body, html {
 
 .score {
   color: white;
-  margin-bottom: 20px;
   font-weight: 500;
   font-size: 1.25rem;
 }
 
 .timer {
   color: white;
-  padding: 5px 20px;
-  border-radius: 8px;
-  margin-bottom: 15vh;
   font-weight: 600;
   font-size: 2rem;
-  text-align: center;
-  width: 15vh;
-  justify-content: left;
-  margin-top: -15vh;
 }
 
 .word-input {
@@ -92,7 +111,6 @@ input[type="text"] {
 .gen-img {
   width: 100%;
   height: 100%;
-  background-image: url('./test.png');
   background-size: cover; 
   background-position: center; 
 }
@@ -106,9 +124,9 @@ button {
 }
 
 .btn- { background-color: #A7D129; }
-.btn-meh { background-color: #FFD32A; }
-.btn-great { background-color: #4CD137; }
-.btn-bad { background-color: #FF3F34; }
+.btn-meh { background-color: #dfba26; }
+.btn-great { background-color: #3faa2e; }
+.btn-bad { background-color: #e3372e; }
 
 .btn-prompt {
   background-color: #9C88FF;
@@ -171,6 +189,7 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
+<<<<<<< HEAD
 /* .keywordsgot {
   display: flex; 
   flex-wrap: wrap; 
@@ -181,6 +200,8 @@ button {
   background-color: #f9f9f9; 
   border-radius: 5px;
 } */
+=======
+>>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
 
 .btn-start {
   background-color: #00C89A;
@@ -188,12 +209,16 @@ button {
   width: 50%;
   font-size: medium;
   text-align: center;
+  cursor: pointer;
+  position: relative;
+  transform: translateX(75%);
 }
 
 .btn-start:hover {
   background-color: #007A63;
 }
 
+<<<<<<< HEAD
 .modal-content {
   background: white;
   padding: 20px;
@@ -248,3 +273,10 @@ button {
   color: #5D3FD3; /* Purple color for the score */
 }
 
+=======
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+>>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
