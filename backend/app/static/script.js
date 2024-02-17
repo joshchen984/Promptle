@@ -1,15 +1,50 @@
+let wordComp = '';
+
 document.addEventListener('DOMContentLoaded', function () {
-  function clickHandler() {
+  function submitHandler() {
     const inputField = document.getElementById('wordGuess');
     const userInput = inputField.value;
     if (userInput !== '') {
       createWordButtons(userInput);
+      const word2 = 'check';
+
+      const url = `http://localhost:5000/similarity?word1=${userInput}&word2=${word2}`;
+      
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(similarityScore => {
+          console.log('Similarity score:', similarityScore);
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+
       inputField.value = '';
-    } // TODO: Add error handling saying guess can't be empty
+    } 
+  }
+
+  function startHandler() {
+    fetch('/images')
+      .then(response => response.json())
+      .then(data => {
+        console.log(wordComp);
+      })
+      .catch(error => {
+        console.error('Error fetching images:', error);
+      });
   }
 
   document.querySelector('.btn-prompt').addEventListener('click', function () {
-    clickHandler();
+    submitHandler();
+  });
+
+  document.querySelector('.btn-start').addEventListener('click', function () {
+    startHandler();
   });
 
   document
@@ -22,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function createWordButtons(words) {
     const wordButtonsContainer = document.querySelector('.word-buttons');
-
-    //do a similarity check here
 
     const button = document.createElement('button');
     button.textContent = words;

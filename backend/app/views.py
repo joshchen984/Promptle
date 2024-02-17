@@ -3,6 +3,7 @@ from app import app
 from dotenv import load_dotenv
 import openai
 import numpy as np
+from flask_cors import CORS
 from sklearn.metrics.pairwise import cosine_similarity
 import spacy
 from flask_pymongo import PyMongo
@@ -14,6 +15,7 @@ from app.generate import generate_image, generate_keywords, generate_prompt
 load_dotenv()
 client = openai.OpenAI()
 mongo = PyMongo(app)
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
