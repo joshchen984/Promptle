@@ -85,6 +85,10 @@ body, html {
   font-size: 2rem;
 }
 
+.timer-bad {
+  color: #e3372e;
+}
+
 .word-input {
   margin-bottom: 20px;
 }

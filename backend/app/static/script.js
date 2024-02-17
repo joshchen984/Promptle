@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function timer() {
   const timerElement = document.querySelector('.timer');
+  timerElement.classList.remove('timer-bad');
+
   let timeRemaining = 60; // 60 seconds for 1 minute
 
   const minutes = Math.floor(timeRemaining / 60);
@@ -136,6 +138,9 @@ function timer() {
     timerElement.textContent = `${minutes}:${
       seconds < 10 ? '0' : ''
     }${seconds}`;
+    if (timeRemaining < 10) {
+      timerElement.classList.add('timer-bad');
+    }
 
     if (timeRemaining <= 0) {
       clearInterval(countdown);
