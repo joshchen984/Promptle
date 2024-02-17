@@ -18,18 +18,18 @@
   <body>
     <div class="game">
       <div class="timer">01:00</div>
+
       <!-- Modal content -->
       <div id="startModal" class="modal">
           <div class = "instructionstitle"> How to Play </div>
 
-          <div class = "instructions"> Welcome to Promptle!
-            For every AI generated image, guess as many keywords that were used to create the prompt!
-            Green means right on the money!
-            Yellow means so close!
-            Red means cold!
-
-            Ready….good luck! </div>
-          <button onclick="closeModal(); timer();">Start!</button>
+      <div class="instructions">
+          <p>Welcome to Promptle!</p>
+          <p>For every AI-generated image, guess as many keywords that were used to create the prompt!</p>
+          <p><span style="color: green;">Green</span> means right on the money!</p>
+          <p><span style="color: yellow;">Yellow</span> means so close!</p>
+          <p><span style="color: red;">Red</span> means cold!</p>
+          <p>Ready….good luck!</p>
       </div>
       
       <div id="endModal" class="modal">
@@ -37,6 +37,10 @@
 
         <div class = "instructions"> End screen </div>
     </div>
+
+
+      <button onclick="closeModal(); timer();" class="start-button">Start!</button>
+  </div>
 
 
       <!-- Overlay -->
