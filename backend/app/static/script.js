@@ -27,12 +27,21 @@ function similarity(word1, word2) {
     });
 }
 
+function getPosition(element) {
+  const rect = element.getBoundingClientRect();
+  return { top: rect.top + window.scrollY, left: rect.left + window.scrollX };
+}
+
 function createWordButtons(words, colorClass) {
   const button = document.createElement('button');
   button.textContent = words;
   button.classList.add('btn-word', colorClass);
   button.dataset.word = words.toLowerCase();
   return button;
+}
+
+function scrollToBottom(element) {
+  element.scrollTop = element.scrollHeight;
 }
 
 async function checkSimilarity(word) {
@@ -50,20 +59,29 @@ async function checkSimilarity(word) {
   let scoreText = scoreDiv.textContent;
   let score = parseFloat(scoreText.split(' ')[1]);
   let button;
+  let addScore;
+  let color;
 
   if (simScore > gThresh) {
     button = createWordButtons(word, 'btn-great');
-    score += 100 * simScore;
+    addScore = 100 * simScore;
     wordMatched.push(closeWord);
+    color = '#31f663';
   } else if (simScore > yThresh) {
     button = createWordButtons(word, 'btn-meh');
-    score += Math.floor(75 * simScore);
+    addScore = Math.floor(75 * simScore);
+    color = '#ffe32f';
   } else {
     button = createWordButtons(word, 'btn-bad');
+    addScore = 0;
+    color = '#fb3838';
   }
+  score += addScore;
+  animateScore(addScore, window.innerWidth/2, window.innerHeight/2 - 230, color);
 
   const wordButtonsContainer = document.querySelector('.word-buttons');
   wordButtonsContainer.appendChild(button);
+  scrollToBottom(wordButtonsContainer);
   gameScore = score;
   scoreDiv.textContent = `Score: ${score}`;
 }
@@ -178,4 +196,20 @@ function openEndModal() {
   const promptText = document.querySelector('.prompt');
   promptText.textContent = `${prompt}`;
   openModal("endModal");
+}
+
+
+function animateScore(scoreValue, startX, startY, color) {
+  const scorePopUp = document.createElement('div');
+  scorePopUp.textContent = `+${scoreValue}`; 
+  scorePopUp.classList.add('score-pop-up'); 
+  scorePopUp.style.left = `${startX}px`; 
+  scorePopUp.style.top = `${startY}px`; 
+  scorePopUp.style.color = color; 
+  document.body.appendChild(scorePopUp); 
+
+  // Remove the pop-up after the animation completes
+  scorePopUp.addEventListener('animationend', () => {
+    scorePopUp.remove();
+  });
 }
