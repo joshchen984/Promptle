@@ -38,7 +38,7 @@ def generate_keywords():
     )
     result = completion.choices[0].message.content
     # Getting rid of whitespace around commas
-    return re.sub(r"\s*,\s*", ",", result)
+    return re.sub(r"\s*,\s*", ",", result).lower()
 
 
 def generate_image(prompt):
