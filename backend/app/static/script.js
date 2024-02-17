@@ -99,7 +99,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function timer() {
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 60; // 60 seconds for 1 minute
+  let timeRemaining = 5; // 60 seconds for 1 minute
+
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
   // Update the timer display every second
   const countdown = setInterval(() => {
@@ -119,10 +123,19 @@ function timer() {
 }
 
 function startHandler() {
+  gameScore = 0;
+  guesses.clear();
+  const scoreDiv = document.querySelector('.score');
+  scoreDiv.textContent = `Score: ${gameScore}`;
+  wordMatched = [];
+
+  const wordButtonsContainer = document.querySelector('.word-buttons');
+  wordButtonsContainer.textContent = '';
+
+  document.getElementById('wordGuess').value = '';
   fetch('/images')
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       const len = Object.keys(data).length;
       gameImage = data[getRandomInt(len)];
       document.getElementById('game-image').src =
@@ -180,4 +193,12 @@ function openEndModal() {
   const promptText = document.querySelector('.prompt');
   promptText.textContent = `${prompt}`;
   openModal('endModal');
+}
+
+function playAgain() {
+  startHandler();
+  var modal = document.getElementById('endModal');
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
 }
