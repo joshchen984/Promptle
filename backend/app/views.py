@@ -38,7 +38,17 @@ def generate_prompt():
 
 @app.route("/generate/keywords", methods=["GET"])
 def generate_keywords():
-    return ""
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-instruct",
+        messages=[
+            {
+                "role": "user",
+                "content": "Create a list of ten keywords separated by commas to use to generate an image. Include a keyword for the style of the image, but do not include the label of Style. The keywords can be related to anything. Keep this in a single line",
+            },
+        ],
+        max_tokens=30,
+    )
+    return completion.choices[0].message
 
 
 @app.route("/generate/images", methods=["GET"])
