@@ -1,29 +1,61 @@
-let wordComp = '';
+let wordComp = [];
+let wordCompString = '';
+const gThresh = 0.8;
+const yThresh = 0.6;
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function similarity(word1, word2) {
+  const url = `http://localhost:5000/similarity?word1=${word1}&word2=${word2}`;
+  return fetch(url)
+    .then(response => response.text())
+    .then(similarityScore => {
+      return similarityScore; 
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+function createWordButtons(words, colorClass) {
+  const wordButtonsContainer = document.querySelector('.word-buttons');
+
+  const button = document.createElement('button');
+  button.textContent = words;
+  button.classList.add('btn-word', colorClass);
+  button.dataset.word = words.toLowerCase();
+  wordButtonsContainer.appendChild(button);
+}
+
+async function checkSimilarity(word){
+  const simResult = await similarity(word, wordCompString);
+  let parts = simResult.split(' ');
+  const score = parseFloat(parts[0]);
+  const closeWord = parts[1];
+
+  console.log(score);
+  console.log(closeWord);
+
+  if (score > gThresh) {
+    //green
+    createWordButtons(word, 'btn-great');
+  } else if (score > yThresh) {
+    //yellow
+    createWordButtons(word, 'btn-meh');
+  } else {
+    //red
+    createWordButtons(word, 'btn-bad');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   function submitHandler() {
     const inputField = document.getElementById('wordGuess');
     const userInput = inputField.value;
     if (userInput !== '') {
-      createWordButtons(userInput);
-      const word2 = 'check';
-
-      const url = `http://localhost:5000/similarity?word1=${userInput}&word2=${word2}`;
-      
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.text();
-        })
-        .then(similarityScore => {
-          console.log('Similarity score:', similarityScore);
-        })
-        .catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
-
+      checkSimilarity(userInput);
       inputField.value = '';
     } 
   }
@@ -32,7 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/images')
       .then(response => response.json())
       .then(data => {
-        console.log(wordComp);
+        const len = Object.keys(data).length;
+        wordComp = data[getRandomInt(len)]["keywords"];
+        wordCompString = wordComp.join(',').replace(/\s+/g, '');
+        console.log(wordCompString);
       })
       .catch(error => {
         console.error('Error fetching images:', error);
@@ -54,16 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
         clickHandler();
       }
     });
-
-  function createWordButtons(words) {
-    const wordButtonsContainer = document.querySelector('.word-buttons');
-
-    const button = document.createElement('button');
-    button.textContent = words;
-    button.classList.add('btn-word');
-    button.dataset.word = words.toLowerCase();
-    wordButtonsContainer.appendChild(button);
-  }
 });
 
 document.addEventListener('DOMContentLoaded', function () {

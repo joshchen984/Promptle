@@ -16,6 +16,7 @@ load_dotenv()
 client = openai.OpenAI()
 mongo = PyMongo(app)
 CORS(app)
+nlp = spacy.load("en_core_web_md")
 
 
 @app.route("/", methods=["GET"])
@@ -33,19 +34,30 @@ def generate_game():
     return json.loads(json_util.dumps(image))
 
 
+def similarity_list(word1, wordArray):
+    words_array = wordArray.split(",")
+    print(words_array)
+    word1_embedding = nlp(word1).vector.reshape(1, -1)
+    maxSim = 0
+    maxSimWord = ''
+    for word in words_array:
+        word2_embedding = nlp(word).vector.reshape(1, -1)
+        similarity_score = cosine_similarity(word1_embedding, word2_embedding)[0][0]
+        if (similarity_score > maxSim):
+            maxSim = similarity_score
+            maxSimWord = word
+    
+    return maxSim, maxSimWord
+
 @app.route("/similarity", methods=["GET"])
 def word_similarity():
-    nlp = spacy.load("en_core_web_md")
     word1 = request.args.get("word1")
-    word2 = request.args.get("word2")
+    wordArray = request.args.get("word2")
 
-    word1_embedding = nlp(word1).vector.reshape(1, -1)
-    word2_embedding = nlp(word2).vector.reshape(1, -1)
+    maxSim, maxSimWord = similarity_list(word1, wordArray)
 
-    similarity_score = cosine_similarity(word1_embedding, word2_embedding)[0][0]
-
-    return str(similarity_score)
-
+    return str(maxSim) + " " + maxSimWord
+ 
 
 @app.route("/images", methods=["GET"])
 def get_images():
