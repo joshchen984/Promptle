@@ -52,20 +52,24 @@
       <div id="overlay" class="overlay"></div>
         <!-- Logo Image -->
     <img src="../static/logo.png" class="logo" alt="Logo">
-    </div>
-        <div class="h-pair">
-            <div class="game-container">
-                <div class="score">Score: 0</div>
-                <div class="image-container">
-                    <div class="gen-img"></div>
-                </div>
-                <div class="word-input">
-                    <input type="text" id="wordGuess" placeholder="Type guess here..." />
-                </div>
-                <button class="btn-prompt">Prompt!</button>
-            </div>
-            <div class="word-buttons"></div>
+</div>
+
+      <div class="h-pair">
+        <div class="game-container">
+          <div class="flex">
+            <div class="score">Score: 0</div>
+            <div class="timer">01:00</div>
+          </div>
+          <div class="image-container">
+            <img class="gen-img" id="game-image" src="">
+          </div>
+          <div class="word-input">
+            <input type="text" id="wordGuess" placeholder="Type guess here..." />
+          </div>
+          <button class="btn-prompt">Prompt!</button>
         </div>
+        <div class="word-buttons"></div>
+      </div>
     </div>
     <script src={{url_for("static", filename="script.js")}}></script>
   </body>
