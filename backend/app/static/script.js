@@ -57,11 +57,11 @@ async function checkSimilarity(word) {
     wordMatched.push(closeWord);
   } else if (simScore > yThresh) {
     button = createWordButtons(word, 'btn-meh');
-    score += 75 * simScore;
+    score += Math.floor(75 * simScore);
   } else {
     button = createWordButtons(word, 'btn-bad');
   }
-  console.log(score);
+
   const wordButtonsContainer = document.querySelector('.word-buttons');
   wordButtonsContainer.appendChild(button);
   gameScore = score;

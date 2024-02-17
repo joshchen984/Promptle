@@ -191,7 +191,6 @@ button {
   width: 90%;
 }
 
-
 .flex {
   display: flex;
   justify-content: space-between;
@@ -260,8 +259,7 @@ button {
   background-color: #B6A0FF; /* Lighter purple on hover */
 }
 
-
-/* End Modal */
+/* EndModal */
 
 .modal-title {
   color: #5D3FD3; /* Purple color for the title */
