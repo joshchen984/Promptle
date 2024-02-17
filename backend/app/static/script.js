@@ -1,5 +1,6 @@
 let wordComp = [];
 let wordCompString = '';
+let wordMatched = [];
 const gThresh = 0.8;
 const yThresh = 0.6;
 
@@ -20,13 +21,11 @@ function similarity(word1, word2) {
 }
 
 function createWordButtons(words, colorClass) {
-  const wordButtonsContainer = document.querySelector('.word-buttons');
-
   const button = document.createElement('button');
   button.textContent = words;
   button.classList.add('btn-word', colorClass);
   button.dataset.word = words.toLowerCase();
-  wordButtonsContainer.appendChild(button);
+  return button
 }
 
 async function checkSimilarity(word){
@@ -35,27 +34,24 @@ async function checkSimilarity(word){
   const simScore = parseFloat(parts[0]).toFixed(2);
   const closeWord = parts[1];
 
-  console.log(simScore);
-  console.log(closeWord);
-
   const scoreDiv = document.querySelector('.score');
   let scoreText = scoreDiv.textContent; 
   let score = parseFloat(scoreText.split(' ')[1]); 
+  let button
 
   if (simScore > gThresh) {
-    //green
-    createWordButtons(word, 'btn-great');
+    button = createWordButtons(word, 'btn-great');
     score += (100 * simScore)
-
+    wordMatched.push(closeWord);
   } else if (simScore > yThresh) {
-    //yellow
-    createWordButtons(word, 'btn-meh');
+    button = createWordButtons(word, 'btn-meh');
     score += (75 * simScore)
   } else {
-    //red
-    createWordButtons(word, 'btn-bad');
+    button = createWordButtons(word, 'btn-bad');
   }
   console.log(score);
+  const wordButtonsContainer = document.querySelector('.word-buttons');
+  wordButtonsContainer.appendChild(button);
   scoreDiv.textContent = `Score: ${score}`;
 }
 
@@ -83,9 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function timer() {
-  // Initial setup
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 60; // 60 seconds for 1 minute
+  let timeRemaining = 5; // 60 seconds for 1 minute
 
   // Update the timer display every second
   const countdown = setInterval(() => {
@@ -99,8 +94,7 @@ function timer() {
     if (timeRemaining <= 0) {
       clearInterval(countdown);
       timerElement.textContent = "Time's up!";
-      // You can add any action here that should occur when the timer ends
-      openModal("endModal");
+      openEndModal();
     }
   }, 1000);
 };
@@ -136,4 +130,18 @@ function openModal(modal) {
   var overlay = document.getElementById("overlay");
   modal.style.display = "block";
   overlay.style.display = "block";
+}
+
+function openEndModal() {
+  const keywordsgotElement = document.querySelector('.keywords-got-container');
+  keywordsgotElement.innerHTML = ''; 
+
+  for (let i=0; i < wordMatched.length; i++) {
+    const button = createWordButtons(wordMatched[i], 'btn-great');
+    keywordsgotElement.appendChild(button);
+  }
+
+  // const keywordsmissElement = document.getElementById('keywordsmissed');
+
+  openModal("endModal");
 }

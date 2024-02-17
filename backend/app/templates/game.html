@@ -37,15 +37,25 @@
 
       <!-- Game Over Modal -->
   <div id="endModal" class="modal">
-      <div class="instructionstitle">Game Over</div>
-
-      <div class="instructions">
-          <p>End screen</p>
-          <p>The Prompt used to generate this image was: <span id="prompt"></span></p>
-          <p><span style="color: green;">Keywords you got!</span> <span id="keywordsgot"></span></p>
-          <p><span style="color: red;">Keywords you missed!</span> <span id="keywordsmissed"></span></p>
-          <p>Total Score: <span id="score"></span></p>
+    <div class="modal-content">
+      <h1 class="modal-title">Game Over</h1>
+      <p class="prompt-description">The Prompt used to generate this image was:</p>
+      <p class="keywords-title got">The keyword you got:</p>
+      <div class="keywords-got-container">
+        <!-- Example of keywords you got -->
+        <div button="btn-great">mountains</div>
+        <div button="btn-great">mountains</div>
+        <div button="btn-great">mountains</div>
       </div>
+      <p class="keywords-title missed">The keyword you missed:</p>
+      <div class="keywords-missed-container">
+        <!-- Example of keywords you missed -->
+        <div button="btn-meh">mountains</div>
+        <div button="btn-meh">mountains</div>
+        <div button="btn-meh">mountains</div>
+      </div>
+      <p class="total-score">Total Score: <span>42</span></p>
+    </div>
   </div>
 
       <!-- Overlay -->

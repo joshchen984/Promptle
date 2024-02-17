@@ -123,6 +123,7 @@ button {
 .modal {
   display: none; /* Hide the modal by default */
   position: fixed;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -145,7 +146,6 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9998;
 }
-
 
 
 .instructionstitle {
@@ -171,6 +171,17 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
+/* .keywordsgot {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 10px;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  background-color: #f9f9f9; 
+  border-radius: 5px;
+} */
+
 .btn-start {
   background-color: #00C89A;
   color: white;
@@ -182,3 +193,58 @@ button {
 .btn-start:hover {
   background-color: #007A63;
 }
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-title {
+  color: #5D3FD3; /* Purple color for the title */
+  margin-bottom: 20px;
+}
+
+.prompt-description,
+.keywords-title {
+  color: #5D3FD3; /* Purple color for the text */
+  margin-bottom: 10px;
+}
+
+.response-container {
+  margin-bottom: 20px;
+}
+
+.keywords-got-container,
+.keywords-missed-container {
+  display: flex;      
+  flex-wrap: wrap;    
+  gap: 10px;        
+  margin-bottom: 10px; 
+  justify-content: center;
+}
+
+.keyword {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  color: white; /* White text for the keywords */
+}
+
+.got {
+  background-color: #A288E3; /* Lighter purple for got keywords */
+}
+
+.missed {
+  background-color: #7F5DAA; /* Darker purple for missed keywords */
+}
+
+.total-score {
+  font-weight: bold;
+  color: #5D3FD3; /* Purple color for the score */
+}
+
