@@ -10,13 +10,13 @@ body, html {
 }
 
 .logo {
-    width: 200px; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute; /* Position absolute to place it at the top */
-    top: 20px; /* Adjust top positioning */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
-    z-index: 1000; /* Ensure the logo is on top of other elements */
+    width: 200px;
+    height: auto;
+    position: relative;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 }
 
 .h-pair {
