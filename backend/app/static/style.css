@@ -167,41 +167,7 @@ button {
 }
 
 
-.instructionstitle {
-  width: 80%; /* Adjust as needed */
-  margin: 0; /* Center the container horizontally */
-  padding: 5px;
-  border: transparent;
-  font-size: xx-large;
-  background-color: transparent; 
-  font-family: Arial, sans-serif; /* Adjust font as needed */
-  line-height: 1.0; /* Adjust line height as needed */
-  font-weight: 700;
-}
-
-.instructions {
-  width: 80%; /* Adjust as needed */
-  margin: 0; /* Center the container horizontally */
-  padding: 5px;
-  border: transparent;
-  font-size: large;
-  background-color: transparent; 
-  font-family: Arial, sans-serif; /* Adjust font as needed */
-  line-height: 1.0; /* Adjust line height as needed */
-}
-
-.keywordsgot {
-  display: flex; 
-  flex-wrap: wrap; 
-  justify-content: flex-start; 
-  gap: 10px;
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  background-color: #f9f9f9; 
-  border-radius: 5px;
-}
-
-.btn-start {
+/* .btn-start {
   background-color: #00C89A;
   color: white;
   width: 50%;
@@ -214,7 +180,7 @@ button {
 
 .btn-start:hover {
   background-color: #007A63;
-}
+} */
 
 .modal-content {
   background: white;
@@ -224,6 +190,78 @@ button {
   max-width: 500px;
   width: 90%;
 }
+
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* StartModal */
+.modal-header h2 {
+  color: #4A4A4A;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 2em;
+  margin: 0;
+  padding: 20px;
+}
+
+
+.modal-body {
+  padding: 2px 16px 20px 16px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.modal-body .color-indicator {
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+.modal-body .green {
+  background-color: #4CD137;
+}
+
+.modal-body .yellow {
+  background-color: #FFD32A;
+}
+
+.modal-body .red {
+  background-color: #FF3F34;
+}
+
+.modal-footer {
+  padding: 10px 16px;
+  text-align: center;
+  border-top: 1px solid #e8e8e8;
+  background-color: #F4ECFF;
+}
+
+.start-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #9C88FF; /* Purple background color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #B6A0FF; /* Lighter purple on hover */
+}
+
+
+/* End Modal */
 
 .modal-title {
   color: #5D3FD3; /* Purple color for the title */
@@ -257,6 +295,17 @@ button {
   justify-content: center;
 }
 
+.keywordsgot {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 10px;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  background-color: #f9f9f9; 
+  border-radius: 5px;
+}
+
 .keyword {
   display: inline-block;
   padding: 5px 15px;
@@ -266,20 +315,14 @@ button {
 }
 
 .got {
-  background-color: #A288E3; /* Lighter purple for got keywords */
+  background-color: #A288E3; 
 }
 
 .missed {
-  background-color: #7F5DAA; /* Darker purple for missed keywords */
+  background-color: #7F5DAA; 
 }
 
 .total-score {
   font-weight: bold;
-  color: #5D3FD3; /* Purple color for the score */
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: #5D3FD3; 
 }
