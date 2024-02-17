@@ -9,6 +9,16 @@ body, html {
   padding: 0;
 }
 
+.logo {
+    width: 200px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Position absolute to place it at the top */
+    top: 20px; /* Adjust top positioning */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000; /* Ensure the logo is on top of other elements */
+}
+
 .h-pair {
   display: flex;
   justify-content: space-between; 
@@ -24,12 +34,15 @@ body, html {
   border-radius: 8px;
   padding:4px;
   overflow-y: auto;
+
 }
 
 .word-buttons button {
   display: block; 
   width: 100%; 
   margin-bottom: 10px; 
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .game-container {
@@ -97,9 +110,9 @@ button {
 }
 
 .btn- { background-color: #A7D129; }
-.btn-meh { background-color: #FFD32A; }
-.btn-great { background-color: #4CD137; }
-.btn-bad { background-color: #FF3F34; }
+.btn-meh { background-color: #dfba26; }
+.btn-great { background-color: #3faa2e; }
+.btn-bad { background-color: #e3372e; }
 
 .btn-prompt {
   background-color: #9C88FF;
@@ -162,12 +175,16 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
+
 .btn-start {
   background-color: #00C89A;
   color: white;
   width: 50%;
   font-size: medium;
   text-align: center;
+  cursor: pointer;
+  position: relative;
+  transform: translateX(75%);
 }
 
 .btn-start:hover {
