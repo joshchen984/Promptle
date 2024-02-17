@@ -18,6 +18,22 @@
   <body>
     <div class="game">
       <div class="timer">01:00</div>
+      <!-- Modal content -->
+      <div id="modal" class="modal">
+          <div class = "instructionstitle"> How to Play </div>
+
+          <div class = "instructions"> Welcome to Promptle!
+            For every AI generated image, guess as many keywords that were used to create the prompt!
+            Green means right on the money!
+            Yellow means so close!
+            Red means cold!
+
+            Ready….good luck! </div>
+          <button onclick="closeModal(); timer();">Start!</button>
+      </div>
+
+      <!-- Overlay -->
+      <div id="overlay" class="overlay"></div>
       <div class="h-pair">
         <div class="game-container">
           <div class="score">Score: 100</div>
