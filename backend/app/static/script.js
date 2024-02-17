@@ -45,10 +45,12 @@ function scrollToBottom(element) {
 }
 
 async function checkSimilarity(word) {
-  word = word.toLowerCase();
+  word = word.toLowerCase().trim();
   if (guesses.has(word)) {
+    document.getElementById('wordGuess').classList.add('error');
     return;
   }
+  document.getElementById('wordGuess').classList.remove('error');
   guesses.add(word);
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
@@ -195,7 +197,7 @@ function openEndModal() {
 
   const promptText = document.querySelector('.prompt');
   promptText.textContent = `${prompt}`;
-  openModal("endModal");
+  openModal('endModal');
 }
 
 
