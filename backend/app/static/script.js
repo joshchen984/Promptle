@@ -2,6 +2,7 @@ let wordComp = [];
 let wordCompString = '';
 const gThresh = 0.8;
 const yThresh = 0.6;
+let gameImage = {};
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -10,12 +11,15 @@ function getRandomInt(max) {
 function similarity(word1, word2) {
   const url = `http://localhost:5000/similarity?word1=${word1}&word2=${word2}`;
   return fetch(url)
-    .then(response => response.text())
-    .then(similarityScore => {
-      return similarityScore; 
+    .then((response) => response.text())
+    .then((similarityScore) => {
+      return similarityScore;
     })
-    .catch(error => {
-      console.error('There has been a problem with your fetch operation:', error);
+    .catch((error) => {
+      console.error(
+        'There has been a problem with your fetch operation:',
+        error
+      );
     });
 }
 
@@ -29,7 +33,7 @@ function createWordButtons(words, colorClass) {
   wordButtonsContainer.appendChild(button);
 }
 
-async function checkSimilarity(word){
+async function checkSimilarity(word) {
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
   const score = parseFloat(parts[0]);
@@ -57,19 +61,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (userInput !== '') {
       checkSimilarity(userInput);
       inputField.value = '';
-    } 
+    }
   }
 
   function startHandler() {
     fetch('/images')
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const len = Object.keys(data).length;
-        wordComp = data[getRandomInt(len)]["keywords"];
+        gameImage = data[getRandomInt(len)];
+        wordComp = gameImage['keywords'];
         wordCompString = wordComp.join(',').replace(/\s+/g, '');
         console.log(wordCompString);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching images:', error);
       });
   }
@@ -91,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 function timer() {
   // Initial setup
   const timerElement = document.querySelector('.timer');
@@ -110,26 +114,25 @@ function timer() {
       clearInterval(countdown);
       timerElement.textContent = "Time's up!";
       // You can add any action here that should occur when the timer ends
-      openModal("endModal");
+      openModal('endModal');
     }
   }, 1000);
-};
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-  openModal("startModal");
-
+  openModal('startModal');
 });
 
 function closeModal() {
-  var modal = document.getElementById("startModal");
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "none";
-  overlay.style.display = "none";
+  var modal = document.getElementById('startModal');
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
 }
 
 function openModal(modal) {
   var modal = document.getElementById(modal);
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "block";
-  overlay.style.display = "block";
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
 }

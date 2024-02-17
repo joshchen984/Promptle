@@ -48,22 +48,14 @@ body, html {
 
 .score {
   color: white;
-  margin-bottom: 20px;
   font-weight: 500;
   font-size: 1.25rem;
 }
 
 .timer {
   color: white;
-  padding: 5px 20px;
-  border-radius: 8px;
-  margin-bottom: 15vh;
   font-weight: 600;
   font-size: 2rem;
-  text-align: center;
-  width: 15vh;
-  justify-content: left;
-  margin-top: -15vh;
 }
 
 .word-input {
@@ -181,4 +173,10 @@ button {
 
 .btn-start:hover {
   background-color: #007A63;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
