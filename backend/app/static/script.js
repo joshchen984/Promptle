@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function timer() {
   // Initial setup
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 30; // 60 seconds for 1 minute
+  let timeRemaining = 60; // 60 seconds for 1 minute
 
   // Update the timer display every second
   const countdown = setInterval(() => {
