@@ -2,6 +2,7 @@ let wordComp = [];
 let wordCompString = '';
 const gThresh = 0.8;
 const yThresh = 0.6;
+let gameImage = {};
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -10,12 +11,15 @@ function getRandomInt(max) {
 function similarity(word1, word2) {
   const url = `http://localhost:5000/similarity?word1=${word1}&word2=${word2}`;
   return fetch(url)
-    .then(response => response.text())
-    .then(similarityScore => {
-      return similarityScore; 
+    .then((response) => response.text())
+    .then((similarityScore) => {
+      return similarityScore;
     })
-    .catch(error => {
-      console.error('There has been a problem with your fetch operation:', error);
+    .catch((error) => {
+      console.error(
+        'There has been a problem with your fetch operation:',
+        error
+      );
     });
 }
 
@@ -29,28 +33,24 @@ function createWordButtons(words, colorClass) {
   wordButtonsContainer.appendChild(button);
 }
 
-async function checkSimilarity(word){
+async function checkSimilarity(word) {
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
   const simScore = parseFloat(parts[0]).toFixed(2);
   const closeWord = parts[1];
 
-  console.log(simScore);
-  console.log(closeWord);
-
   const scoreDiv = document.querySelector('.score');
-  let scoreText = scoreDiv.textContent; 
-  let score = parseFloat(scoreText.split(' ')[1]); 
+  let scoreText = scoreDiv.textContent;
+  let score = parseFloat(scoreText.split(' ')[1]);
 
   if (simScore > gThresh) {
     //green
     createWordButtons(word, 'btn-great');
-    score += (100 * simScore)
-
+    score += 100 * simScore;
   } else if (simScore > yThresh) {
     //yellow
     createWordButtons(word, 'btn-meh');
-    score += (75 * simScore)
+    score += 75 * simScore;
   } else {
     //red
     createWordButtons(word, 'btn-bad');
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (userInput !== '') {
       checkSimilarity(userInput);
       inputField.value = '';
-    } 
+    }
   }
 
   document.querySelector('.btn-prompt').addEventListener('click', function () {
@@ -103,39 +103,39 @@ function timer() {
       clearInterval(countdown);
       timerElement.textContent = "Time's up!";
       // You can add any action here that should occur when the timer ends
-      openModal("endModal");
+      openModal('endModal');
     }
   }, 1000);
-};
+}
 
 function startHandler() {
   fetch('/images')
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const len = Object.keys(data).length;
-      wordComp = data[getRandomInt(len)]["keywords"];
+      wordComp = data[getRandomInt(len)]['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
-      console.log(wordCompString);
     })
-    .catch(error => {
+    .catch((error) => {
       console.error('Error fetching images:', error);
     });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  openModal("startModal");
+  openModal('startModal');
 });
 
 function closeModal() {
-  var modal = document.getElementById("startModal");
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "none";
-  overlay.style.display = "none";
+  startHandler();
+  var modal = document.getElementById('startModal');
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'none';
+  overlay.style.display = 'none';
 }
 
 function openModal(modal) {
   var modal = document.getElementById(modal);
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "block";
-  overlay.style.display = "block";
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
 }
