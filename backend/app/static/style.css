@@ -9,6 +9,16 @@ body, html {
   padding: 0;
 }
 
+.logo {
+    width: 200px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Position absolute to place it at the top */
+    top: 20px; /* Adjust top positioning */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1000; /* Ensure the logo is on top of other elements */
+}
+
 .h-pair {
   display: flex;
   justify-content: space-between; 
