@@ -59,6 +59,14 @@ async function checkSimilarity(word) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  const inputField = document.getElementById('wordGuess');
+
+  inputField.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      submitHandler();
+    }
+  });
+
   function submitHandler() {
     const inputField = document.getElementById('wordGuess');
     const userInput = inputField.value;
@@ -75,14 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('.btn-start').addEventListener('click', function () {
     startHandler();
   });
-
-  document
-    .getElementById('wordGuess')
-    .addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        clickHandler();
-      }
-    });
 });
 
 function timer() {
