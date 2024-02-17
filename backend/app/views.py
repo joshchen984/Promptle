@@ -3,11 +3,11 @@ from app import app
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 from dotenv import load_dotenv
 import os
-from openai import OpenAI
+import openai
 from dotenv import load_dotenv
 
 load_dotenv()
-client = OpenAI()
+client = openai.OpenAI()
 
 
 @app.route("/", methods=["GET"])
@@ -39,3 +39,17 @@ def generate_prompt():
 @app.route("/generate/keywords", methods=["GET"])
 def generate_keywords():
     return ""
+
+
+@app.route("/generate/images", methods=["GET"])
+def generate_image():
+    prompt = request.args.get("prompt")
+    response = client.images.generate(
+        model="dall-e-2",
+        prompt=prompt,
+        size="512x512",
+        quality="standard",
+        n=1,
+    )
+    image_url = response.data[0].url
+    return image_url
