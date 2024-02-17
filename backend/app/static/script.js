@@ -36,7 +36,7 @@ function createWordButtons(words, colorClass) {
 }
 
 async function checkSimilarity(word) {
-  word = word.toLowerCase();
+  word = word.toLowerCase().trim();
   if (guesses.has(word)) {
     document.getElementById('wordGuess').classList.add('error');
     return;
