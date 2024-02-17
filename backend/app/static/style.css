@@ -11,12 +11,11 @@ body, html {
 
 .logo {
     width: 200px;
-    height: auto;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 1000;
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .h-pair {
@@ -61,7 +60,7 @@ body, html {
 }
 
 .game-container {
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   position:  absolute;
@@ -279,3 +278,8 @@ button {
   color: #5D3FD3; /* Purple color for the score */
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

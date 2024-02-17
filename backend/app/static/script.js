@@ -2,6 +2,7 @@ let wordComp = [];
 let prompt = '';
 let wordCompString = '';
 let wordMatched = [];
+const guesses = new Set();
 const gThresh = 0.8;
 const yThresh = 0.6;
 let gameImage = {};
@@ -31,27 +32,31 @@ function createWordButtons(words, colorClass) {
   button.textContent = words;
   button.classList.add('btn-word', colorClass);
   button.dataset.word = words.toLowerCase();
-  return button
+  return button;
 }
 
 async function checkSimilarity(word) {
+  if (guesses.has(word)) {
+    return;
+  }
+  guesses.add(word);
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
   const simScore = parseFloat(parts[0]).toFixed(2);
   const closeWord = parts[1];
 
   const scoreDiv = document.querySelector('.score');
-  let scoreText = scoreDiv.textContent; 
-  let score = parseFloat(scoreText.split(' ')[1]); 
-  let button
+  let scoreText = scoreDiv.textContent;
+  let score = parseFloat(scoreText.split(' ')[1]);
+  let button;
 
   if (simScore > gThresh) {
     button = createWordButtons(word, 'btn-great');
-    score += (100 * simScore)
+    score += 100 * simScore;
     wordMatched.push(closeWord);
   } else if (simScore > yThresh) {
     button = createWordButtons(word, 'btn-meh');
-    score += (75 * simScore)
+    score += 75 * simScore;
   } else {
     button = createWordButtons(word, 'btn-bad');
   }
@@ -91,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function timer() {
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 10; // 60 seconds for 1 minute
+  let timeRemaining = 60; // 60 seconds for 1 minute
 
   // Update the timer display every second
   const countdown = setInterval(() => {
@@ -142,25 +147,27 @@ function closeModal() {
 
 function openModal(modal) {
   var modal = document.getElementById(modal);
-  var overlay = document.getElementById("overlay");
-  modal.style.display = "block";
-  overlay.style.display = "block";
+  var overlay = document.getElementById('overlay');
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
 }
 
 function openEndModal() {
   const keywordsgotElement = document.querySelector('.keywords-got-container');
-  keywordsgotElement.innerHTML = ''; 
+  keywordsgotElement.innerHTML = '';
 
-  for (let i=0; i < wordMatched.length; i++) {
+  for (let i = 0; i < wordMatched.length; i++) {
     const button = createWordButtons(wordMatched[i], 'btn-great');
     keywordsgotElement.appendChild(button);
   }
 
-  const keywordsmissElement = document.querySelector('.keywords-missed-container');
-  keywordsmissElement.innerHTML = ''; 
-  let wordsNotMatched = wordComp.filter(word => !wordMatched.includes(word));
+  const keywordsmissElement = document.querySelector(
+    '.keywords-missed-container'
+  );
+  keywordsmissElement.innerHTML = '';
+  let wordsNotMatched = wordComp.filter((word) => !wordMatched.includes(word));
 
-  for (let i=0; i < wordsNotMatched.length; i++) {
+  for (let i = 0; i < wordsNotMatched.length; i++) {
     const button = createWordButtons(wordsNotMatched[i], 'btn-bad');
     keywordsmissElement.appendChild(button);
   }
