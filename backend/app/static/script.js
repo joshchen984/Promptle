@@ -32,22 +32,30 @@ function createWordButtons(words, colorClass) {
 async function checkSimilarity(word){
   const simResult = await similarity(word, wordCompString);
   let parts = simResult.split(' ');
-  const score = parseFloat(parts[0]);
+  const simScore = parseFloat(parts[0]).toFixed(2);
   const closeWord = parts[1];
 
-  console.log(score);
+  console.log(simScore);
   console.log(closeWord);
 
-  if (score > gThresh) {
+  const scoreDiv = document.querySelector('.score');
+  let scoreText = scoreDiv.textContent; 
+  let score = parseFloat(scoreText.split(' ')[1]); 
+
+  if (simScore > gThresh) {
     //green
     createWordButtons(word, 'btn-great');
-  } else if (score > yThresh) {
+    score += (100 * simScore)
+
+  } else if (simScore > yThresh) {
     //yellow
     createWordButtons(word, 'btn-meh');
+    score += (75 * simScore)
   } else {
     //red
     createWordButtons(word, 'btn-bad');
   }
+  scoreDiv.textContent = `Score: ${score}`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -58,20 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
       checkSimilarity(userInput);
       inputField.value = '';
     } 
-  }
-
-  function startHandler() {
-    fetch('/images')
-      .then(response => response.json())
-      .then(data => {
-        const len = Object.keys(data).length;
-        wordComp = data[getRandomInt(len)]["keywords"];
-        wordCompString = wordComp.join(',').replace(/\s+/g, '');
-        console.log(wordCompString);
-      })
-      .catch(error => {
-        console.error('Error fetching images:', error);
-      });
   }
 
   document.querySelector('.btn-prompt').addEventListener('click', function () {
@@ -90,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 });
-
 
 function timer() {
   // Initial setup
@@ -114,21 +107,32 @@ function timer() {
   }, 1000);
 };
 
+function startHandler() {
+  fetch('/images')
+    .then(response => response.json())
+    .then(data => {
+      const len = Object.keys(data).length;
+      wordComp = data[getRandomInt(len)]["keywords"];
+      wordCompString = wordComp.join(',').replace(/\s+/g, '');
+      console.log(wordCompString);
+    })
+    .catch(error => {
+      console.error('Error fetching images:', error);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   openModal();
-
-
   function openModal() {
     var modal = document.getElementById("modal");
     var overlay = document.getElementById("overlay");
     modal.style.display = "block";
     overlay.style.display = "block";
   }
-
-
 });
 
 function closeModal() {
+  startHandler();
   var modal = document.getElementById("modal");
   var overlay = document.getElementById("overlay");
   modal.style.display = "none";
