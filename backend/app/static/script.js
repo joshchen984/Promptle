@@ -91,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+
+function timer() {
   // Initial setup
   const timerElement = document.querySelector('.timer');
   let timeRemaining = 60; // 60 seconds for 1 minute
@@ -111,22 +112,25 @@ document.addEventListener('DOMContentLoaded', function () {
       // You can add any action here that should occur when the timer ends
     }
   }, 1000);
-});
+};
+
 document.addEventListener('DOMContentLoaded', function () {
-  const timerElement = document.querySelector('.timer');
-  let timeRemaining = 60; // 60 seconds for 1 minute
+  openModal();
 
-  const countdown = setInterval(() => {
-    timeRemaining--;
-    const minutes = Math.floor(timeRemaining / 60);
-    const seconds = timeRemaining % 60;
-    timerElement.textContent = `${minutes}:${
-      seconds < 10 ? '0' : ''
-    }${seconds}`;
 
-    if (timeRemaining <= 0) {
-      clearInterval(countdown);
-      timerElement.textContent = "Time's up!";
-    }
-  }, 1000);
+  function openModal() {
+    var modal = document.getElementById("modal");
+    var overlay = document.getElementById("overlay");
+    modal.style.display = "block";
+    overlay.style.display = "block";
+  }
+
+
 });
+
+function closeModal() {
+  var modal = document.getElementById("modal");
+  var overlay = document.getElementById("overlay");
+  modal.style.display = "none";
+  overlay.style.display = "none";
+}

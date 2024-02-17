@@ -1,10 +1,12 @@
-body {
+body, html {
   font-family: Arial, sans-serif;
   background-color: #5C5470;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .h-pair {
@@ -40,25 +42,28 @@ body {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  height: 60vh;
+  height: 80vh;
   width: 60vh;
 }
 
 .score {
-  background-color: #8C7AE6;
   color: white;
-  padding: 5px 20px;
-  border-radius: 8px;
-  margin-bottom: 5vh;
-  font-size: 15px;
-  text-align: center;
-  width: 15vh;
-  justify-content: left;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.25rem;
 }
 
 .timer {
   color: white;
-  margin-bottom: 20px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  margin-bottom: 15vh;
+  font-weight: 600;
+  font-size: 2rem;
+  text-align: center;
+  width: 15vh;
+  justify-content: left;
+  margin-top: -15vh;
 }
 
 .word-input {
@@ -76,7 +81,7 @@ input[type="text"] {
   background-color: white;
   border-radius: 4px;
   padding: 5px;
-  height: 200px;
+  height: 461px;
   margin-bottom: 20px;
   background-position: center center;
   justify-content: center;
@@ -113,4 +118,67 @@ button {
 
 .btn-prompt:hover {
   background-color: #8C7AE6;
+}
+
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F4ECFF;
+  border: 1px transparent #ccc;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+/* Styling for the overlay */
+.overlay {
+  display: none; /* Hide the overlay by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+
+
+.instructionstitle {
+  width: 80%; /* Adjust as needed */
+  margin: 0; /* Center the container horizontally */
+  padding: 5px;
+  border: transparent;
+  font-size: xx-large;
+  background-color: transparent; 
+  font-family: Arial, sans-serif; /* Adjust font as needed */
+  line-height: 1.0; /* Adjust line height as needed */
+  font-weight: 700;
+}
+
+.instructions {
+  width: 80%; /* Adjust as needed */
+  margin: 0; /* Center the container horizontally */
+  padding: 5px;
+  border: transparent;
+  font-size: large;
+  background-color: transparent; 
+  font-family: Arial, sans-serif; /* Adjust font as needed */
+  line-height: 1.0; /* Adjust line height as needed */
+}
+
+.btn-start {
+  background-color: #00C89A;
+  color: white;
+  width: 50%;
+  font-size: medium;
+  text-align: center;
+}
+
+.btn-start:hover {
+  background-color: #007A63;
 }
