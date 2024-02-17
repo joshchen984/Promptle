@@ -29,6 +29,8 @@ PyYAML
 regex
 requests
 safetensors
+scikit-learn
+spacy
 sniffio
 sympy
 tokenizers
