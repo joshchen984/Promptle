@@ -41,8 +41,8 @@
       <div class="instructions">
           <p>End screen</p>
           <p>The Prompt used to generate this image was: <span id="prompt"></span></p>
-          <p><span style="color: green;">Keywords you got!</span> <span id="keywordsgot"></span></p>
-          <p><span style="color: red;">Keywords you missed!</span> <span id="keywordsmissed"></span></p>
+          <p><span style="color: #3faa2e;">Keywords you got!</span> <span id="keywordsgot"></span></p>
+          <p><span style="color: #e3372e;">Keywords you missed!</span> <span id="keywordsmissed"></span></p>
           <p>Total Score: <span id="score"></span></p>
       </div>
   </div>
@@ -67,7 +67,11 @@
           </div>
           <button class="btn-prompt">Prompt!</button>
         </div>
-        <div class="word-buttons"></div>
+        <div class="main-container">
+            <div class = "word-buttons-title">Guesses</div>
+            <div class="word-buttons"></div>
+        </div>
+        
       </div>
     </div>
     <script src={{url_for("static", filename="script.js")}}></script>
