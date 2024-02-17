@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Promptle</title>
+    <title>Wordle</title>
     <link rel="stylesheet" href={{url_for('static', filename='style.css')}}>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
@@ -17,6 +17,7 @@
   </head>
   <body>
     <div class="game">
+
       <!-- Modal content -->
       <div id="startModal" class="modal">
           <div class = "instructionstitle"> How to Play </div>
@@ -24,12 +25,11 @@
       <div class="instructions">
           <p>Welcome to Promptle!</p>
           <p>For every AI-generated image, guess as many keywords that were used to create the prompt!</p>
-          <p><span style="color: #3faa2e;">Green</span> means right on the money!</p>
-          <p><span style="color: #dfba26;">Yellow</span> means so close!</p>
-          <p><span style="color: #e3372e;">Red</span> means cold!</p>
+          <p><span style="color: green;">Green</span> means right on the money!</p>
+          <p><span style="color: yellow;">Yellow</span> means so close!</p>
+          <p><span style="color: red;">Red</span> means cold!</p>
           <p>Ready….good luck!</p>
-          <button onclick="closeModal(); timer();" class="btn-start">Start!</button>
-          
+          <button onclick="closeModal(); timer();" class="start-button">Start!</button>
 
       </div>
       </div>
@@ -60,7 +60,7 @@
             <div class="timer">01:00</div>
           </div>
           <div class="image-container">
-            <div class="gen-img"></div>
+            <img class="gen-img" id="game-image" src="">
           </div>
           <div class="word-input">
             <input type="text" id="wordGuess" placeholder="Type guess here..." />
