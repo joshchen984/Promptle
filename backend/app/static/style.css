@@ -189,7 +189,6 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
-<<<<<<< HEAD
 /* .keywordsgot {
   display: flex; 
   flex-wrap: wrap; 
@@ -200,8 +199,6 @@ button {
   background-color: #f9f9f9; 
   border-radius: 5px;
 } */
-=======
->>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
 
 .btn-start {
   background-color: #00C89A;
@@ -218,7 +215,6 @@ button {
   background-color: #007A63;
 }
 
-<<<<<<< HEAD
 .modal-content {
   background: white;
   padding: 20px;
@@ -273,10 +269,8 @@ button {
   color: #5D3FD3; /* Purple color for the score */
 }
 
-=======
 .flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
->>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
