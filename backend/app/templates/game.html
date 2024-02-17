@@ -18,20 +18,24 @@
   <body>
     <div class="game">
 
-      <!-- Modal content -->
+      <!-- Start Modal content -->
       <div id="startModal" class="modal">
-          <div class = "instructionstitle"> How to Play </div>
-
-      <div class="instructions">
-          <p>Welcome to Promptle!</p>
-          <p>For every AI-generated image, guess as many keywords that were used to create the prompt!</p>
-          <p><span style="color: green;">Green</span> means right on the money!</p>
-          <p><span style="color: yellow;">Yellow</span> means so close!</p>
-          <p><span style="color: red;">Red</span> means cold!</p>
-          <p>Ready….good luck!</p>
-          <button onclick="closeModal(); timer();" class="start-button">Start!</button>
-
-      </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>How to Play</h2>
+          </div>
+          <div class="modal-body">
+            <p>Welcome to Promptle!</p>
+            <p>For every AI-generated image, guess as many keywords that were used to create the prompt!</p>
+            <p><span class="color-indicator green">Green</span> means right on the money!</p>
+            <p><span class="color-indicator yellow">Yellow</span> means so close!</p>
+            <p><span class="color-indicator red">Red</span> means cold!</p>
+            <p>Ready… good luck!</p>
+          </div>
+          <div class="modal-footer">
+            <button onclick="closeModal(); timer();" class="start-button">Start!</button>
+          </div>
+        </div>
       </div>
 
       <!-- Game Over Modal -->
@@ -41,13 +45,13 @@
       <p class="prompt-description">The Prompt used to generate this image was:</p>
       <p class="prompt"></p>
       <div class="endtitle-container got">
-        <p class="keywords-title">The keyword you got:</p>
+        <p class="keywords-title">The keywords you got:</p>
       </div>
       <div class="keywords-got-container">
         <!-- Example of keywords you got -->
       </div>
       <div class="endtitle-container missed">
-        <p class="keywords-title">The keyword you missed:</p>
+        <p class="keywords-title">The keywords you missed:</p>
       </div>
       <div class="keywords-missed-container">
         <!-- Example of keywords you missed -->
@@ -59,7 +63,7 @@
       <!-- Overlay -->
       <div id="overlay" class="overlay"></div>
         <!-- Logo Image -->
-    <img src="../static/logo.png" class="logo" alt="Logo">
+    <img src="../static/logo_clear_bg.png" class="logo" alt="Logo">
 </div>
 
       <div class="h-pair">
