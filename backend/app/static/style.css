@@ -34,12 +34,15 @@ body, html {
   border-radius: 8px;
   padding:4px;
   overflow-y: auto;
+
 }
 
 .word-buttons button {
   display: block; 
   width: 100%; 
   margin-bottom: 10px; 
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .game-container {
@@ -58,22 +61,14 @@ body, html {
 
 .score {
   color: white;
-  margin-bottom: 20px;
   font-weight: 500;
   font-size: 1.25rem;
 }
 
 .timer {
   color: white;
-  padding: 5px 20px;
-  border-radius: 8px;
-  margin-bottom: 15vh;
   font-weight: 600;
   font-size: 2rem;
-  text-align: center;
-  width: 15vh;
-  justify-content: left;
-  margin-top: -15vh;
 }
 
 .word-input {
@@ -116,9 +111,9 @@ button {
 }
 
 .btn- { background-color: #A7D129; }
-.btn-meh { background-color: #FFD32A; }
-.btn-great { background-color: #4CD137; }
-.btn-bad { background-color: #FF3F34; }
+.btn-meh { background-color: #dfba26; }
+.btn-great { background-color: #3faa2e; }
+.btn-bad { background-color: #e3372e; }
 
 .btn-prompt {
   background-color: #9C88FF;
@@ -181,14 +176,24 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
+
 .btn-start {
   background-color: #00C89A;
   color: white;
   width: 50%;
   font-size: medium;
   text-align: center;
+  cursor: pointer;
+  position: relative;
+  transform: translateX(75%);
 }
 
 .btn-start:hover {
   background-color: #007A63;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
