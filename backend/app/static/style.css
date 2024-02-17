@@ -1,6 +1,6 @@
 body, html {
   font-family: Arial, sans-serif;
-  background-color: #5C5470;
+  background-color: #2596be;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@ body, html {
     height: auto;
     position: absolute;
     top: 20px;
-    left: 60%;
+    left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
 }
@@ -25,16 +25,30 @@ body, html {
   position: relative; 
 }
 
-.word-buttons {
+.main-container {
   position: relative; 
   left: 45vh;
-  background-color: white;
   height: 58vh;
-  width: 20vh;
+  width: 20vh; /* Adjust height as needed */
+  background-color: #8077b3;
+  border-radius: 10px;
+}
+
+.word-buttons {
+  background-color: transparent;
+  position: relative; 
   border-radius: 8px;
   padding:4px;
   overflow-y: auto;
+}
 
+.word-buttons-title {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: large;
+    font-weight: 700;
 }
 
 .word-buttons button {
@@ -127,6 +141,7 @@ button {
 .modal {
   display: none; /* Hide the modal by default */
   position: fixed;
+  align-items: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -149,7 +164,6 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9998;
 }
-
 
 
 .instructionstitle {
@@ -175,6 +189,19 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
+<<<<<<< HEAD
+/* .keywordsgot {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 10px;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  background-color: #f9f9f9; 
+  border-radius: 5px;
+} */
+=======
+>>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
 
 .btn-start {
   background-color: #00C89A;
@@ -191,8 +218,65 @@ button {
   background-color: #007A63;
 }
 
+<<<<<<< HEAD
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-title {
+  color: #5D3FD3; /* Purple color for the title */
+  margin-bottom: 20px;
+}
+
+.prompt-description,
+.keywords-title {
+  color: #5D3FD3; /* Purple color for the text */
+  margin-bottom: 10px;
+}
+
+.response-container {
+  margin-bottom: 20px;
+}
+
+.keywords-got-container,
+.keywords-missed-container {
+  display: flex;      
+  flex-wrap: wrap;    
+  gap: 10px;        
+  margin-bottom: 10px; 
+  justify-content: center;
+}
+
+.keyword {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  color: white; /* White text for the keywords */
+}
+
+.got {
+  background-color: #A288E3; /* Lighter purple for got keywords */
+}
+
+.missed {
+  background-color: #7F5DAA; /* Darker purple for missed keywords */
+}
+
+.total-score {
+  font-weight: bold;
+  color: #5D3FD3; /* Purple color for the score */
+}
+
+=======
 .flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+>>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
