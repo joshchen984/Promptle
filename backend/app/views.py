@@ -1,4 +1,4 @@
-from flask import request, abort, jsonify
+from flask import request, abort, jsonify, render_template
 from app import app
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 from dotenv import load_dotenv
@@ -12,7 +12,7 @@ client = OpenAI()
 
 @app.route("/", methods=["GET"])
 def index():
-    return "hi"
+    return render_template("game.html")
 
 
 @app.route("/generate/prompt", methods=["GET"])
@@ -24,16 +24,15 @@ def generate_prompt():
         messages=[
             {
                 "role": "system",
-                "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair.",
+                "content": "You are a prompt engineer and an expert in creating prompts for Dall-e.",
             },
             {
                 "role": "user",
-                "content": "Compose a poem that explains the concept of recursion in programming.",
+                "content": f"Generate a dall e prompt that incorporates the following keywords: [{keywordsArg}]",
             },
         ],
-        max_tokens=100,
+        max_tokens=30,
     )
-    print(completion.choices)
     return completion.choices[0].message
 
 
