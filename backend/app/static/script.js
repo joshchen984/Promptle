@@ -39,9 +39,6 @@ async function checkSimilarity(word) {
   const simScore = parseFloat(parts[0]).toFixed(2);
   const closeWord = parts[1];
 
-  console.log(simScore);
-  console.log(closeWord);
-
   const scoreDiv = document.querySelector('.score');
   let scoreText = scoreDiv.textContent;
   let score = parseFloat(scoreText.split(' ')[1]);
@@ -106,7 +103,7 @@ function timer() {
       clearInterval(countdown);
       timerElement.textContent = "Time's up!";
       // You can add any action here that should occur when the timer ends
-      openModal(endModal);
+      openModal('endModal');
     }
   }, 1000);
 }
@@ -118,7 +115,6 @@ function startHandler() {
       const len = Object.keys(data).length;
       wordComp = data[getRandomInt(len)]['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
-      console.log(wordCompString);
     })
     .catch((error) => {
       console.error('Error fetching images:', error);
