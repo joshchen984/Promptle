@@ -7,8 +7,27 @@ body {
     height: 100vh;
     margin: 0;
   }
+
+  .h-pair {
+    display: flex;
+    justify-content: space-between; 
+    position: relative; 
+  }
+  
+  .word-buttons {
+    position: relative; 
+    left: 330px;
+    background-color: white;
+    height: auto;
+    width: 20vh;
+    overflow-y: auto;
+}
   
   .game-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position:  absolute;
     background-color: #6C63A0;
     border-radius: 8px;
     padding: 20px;
@@ -44,18 +63,6 @@ body {
     border: none;
     width: 50%;
   }
-
-
-  .word-buttons {
-    display: flex;
-    flex-wrap: wrap; 
-    align-items: center;
-    height: 50px;
-    overflow-y: auto;
-    gap: 5px; 
-    padding: 5px; 
-    margin-bottom: 20px;
-}
 
   .image-container {
     background-color: white;
