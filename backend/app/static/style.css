@@ -1,6 +1,6 @@
 body, html {
   font-family: Arial, sans-serif;
-  background-color: #2596be;
+  background-color: #766cea;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ body, html {
   left: 45vh;
   height: 58vh;
   width: 20vh; /* Adjust height as needed */
-  background-color: #8077b3;
+  background-color: #e5e1ff;
   border-radius: 10px;
 }
 
@@ -40,6 +40,7 @@ body, html {
   border-radius: 8px;
   padding:4px;
   overflow-y: auto;
+  max-height: 50vh;
 }
 
 .word-buttons-title {
@@ -189,8 +190,7 @@ button {
   line-height: 1.0; /* Adjust line height as needed */
 }
 
-<<<<<<< HEAD
-/* .keywordsgot {
+.keywordsgot {
   display: flex; 
   flex-wrap: wrap; 
   justify-content: flex-start; 
@@ -199,9 +199,7 @@ button {
   border: 1px solid #ccc; 
   background-color: #f9f9f9; 
   border-radius: 5px;
-} */
-=======
->>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8
+}
 
 .btn-start {
   background-color: #00C89A;
@@ -218,7 +216,6 @@ button {
   background-color: #007A63;
 }
 
-<<<<<<< HEAD
 .modal-content {
   background: white;
   padding: 20px;
@@ -273,10 +270,3 @@ button {
   color: #5D3FD3; /* Purple color for the score */
 }
 
-=======
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
->>>>>>> 5f9938eccfdb5b6f5e88cbc0788407c76ac9c5b8

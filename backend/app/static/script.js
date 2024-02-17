@@ -4,6 +4,7 @@ let wordMatched = [];
 const gThresh = 0.8;
 const yThresh = 0.6;
 let gameImage = {};
+let gameScore = 0;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -56,6 +57,7 @@ async function checkSimilarity(word) {
   console.log(score);
   const wordButtonsContainer = document.querySelector('.word-buttons');
   wordButtonsContainer.appendChild(button);
+  gameScore = score;
   scoreDiv.textContent = `Score: ${score}`;
 }
 
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function timer() {
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 5; // 60 seconds for 1 minute
+  let timeRemaining = 10; // 60 seconds for 1 minute
 
   // Update the timer display every second
   const countdown = setInterval(() => {
@@ -151,7 +153,15 @@ function openEndModal() {
     keywordsgotElement.appendChild(button);
   }
 
-  // const keywordsmissElement = document.getElementById('keywordsmissed');
+  const keywordsmissElement = document.querySelector('.keywords-missed-container');
+  keywordsmissElement.innerHTML = ''; 
+  let wordsNotMatched = wordComp.filter(word => !wordMatched.includes(word));
 
+  for (let i=0; i < wordsNotMatched.length; i++) {
+    const button = createWordButtons(wordsNotMatched[i], 'btn-bad');
+    keywordsmissElement.appendChild(button);
+  }
+  const scoreText = document.querySelector('.total-score');
+  scoreText.textContent = `Score: ${gameScore}`;
   openModal("endModal");
 }
