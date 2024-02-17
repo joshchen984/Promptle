@@ -113,7 +113,10 @@ function startHandler() {
     .then((response) => response.json())
     .then((data) => {
       const len = Object.keys(data).length;
-      wordComp = data[getRandomInt(len)]['keywords'];
+      gameImage = data[getRandomInt(len)];
+      document.getElementById('game-image').src =
+        'data:image/png;base64,' + gameImage.image['$binary'].base64;
+      wordComp = gameImage['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
     })
     .catch((error) => {
