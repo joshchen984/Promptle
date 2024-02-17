@@ -123,27 +123,11 @@ function startHandler() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-<<<<<<< HEAD
-  openModal();
-  function openModal() {
-    var modal = document.getElementById("modal");
-    var overlay = document.getElementById("overlay");
-    modal.style.display = "block";
-    overlay.style.display = "block";
-  }
-});
-
-function closeModal() {
-  startHandler();
-  var modal = document.getElementById("modal");
-=======
   openModal("startModal");
-
 });
 
 function closeModal() {
   var modal = document.getElementById("startModal");
->>>>>>> 1741aa47e95228b644bedaead5c0afe514d8609a
   var overlay = document.getElementById("overlay");
   modal.style.display = "none";
   overlay.style.display = "none";

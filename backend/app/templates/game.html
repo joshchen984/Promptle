@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wordle</title>
+    <title>Promptle</title>
     <link rel="stylesheet" href={{url_for('static', filename='style.css')}}>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
@@ -26,11 +26,12 @@
       <div class="instructions">
           <p>Welcome to Promptle!</p>
           <p>For every AI-generated image, guess as many keywords that were used to create the prompt!</p>
-          <p><span style="color: green;">Green</span> means right on the money!</p>
-          <p><span style="color: yellow;">Yellow</span> means so close!</p>
-          <p><span style="color: red;">Red</span> means cold!</p>
+          <p><span style="color: #3faa2e;">Green</span> means right on the money!</p>
+          <p><span style="color: #dfba26;">Yellow</span> means so close!</p>
+          <p><span style="color: #e3372e;">Red</span> means cold!</p>
           <p>Ready….good luck!</p>
-          <button onclick="closeModal(); timer();" class="start-button">Start!</button>
+          <button onclick="closeModal(); timer();" class="btn-start">Start!</button>
+          
 
       </div>
       </div>
@@ -41,11 +42,10 @@
         <div class = "instructions"> End screen </div>
       </div>
 
-
-
-
       <!-- Overlay -->
       <div id="overlay" class="overlay"></div>
+
+      
       <div class="h-pair">
         <div class="game-container">
           <div class="score">Score: 0</div>
