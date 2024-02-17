@@ -8,6 +8,7 @@ distro
 exceptiongroup
 filelock
 flask-cors
+flask_pymongo
 Flask
 fsspec
 h11
