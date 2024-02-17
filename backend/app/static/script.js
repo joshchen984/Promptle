@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function timer() {
   const timerElement = document.querySelector('.timer');
-  let timeRemaining = 5; // 60 seconds for 1 minute
+  let timeRemaining = 60; // 60 seconds for 1 minute
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
