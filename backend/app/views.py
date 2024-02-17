@@ -7,6 +7,7 @@ import openai
 from dotenv import load_dotenv
 
 load_dotenv()
+print(os.environ.get("OPENAI_API_KEY"))
 client = openai.OpenAI()
 
 
@@ -43,7 +44,7 @@ def generate_keywords():
         messages=[
             {
                 "role": "user",
-                "content": "Create a list of ten keywords separated by commas to use to generate an image. Include a keyword for the style of the image, but do not include the label of Style. The keywords can be related to anything. Keep this in a single line",
+                "content": "Create a list of ten keywords separated by commas to use to generate an image.pip Include a keyword for the style of the image, but do not include the label of Style. The keywords can be related to anything. Keep this in a single line",
             },
         ],
         max_tokens=30,
