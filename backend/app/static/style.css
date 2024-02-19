@@ -57,6 +57,7 @@ body, html {
   margin-bottom: 10px; 
   overflow-x: hidden;
   text-overflow: ellipsis;
+  color: white;
 }
 
 .game-container {
@@ -75,8 +76,8 @@ body, html {
 
 .score {
   color: white;
-  font-weight: 500;
-  font-size: 1.25rem;
+  font-weight: 600;
+  font-size: 2rem;
 }
 
 .timer {
@@ -128,10 +129,10 @@ button {
   transition: background-color 0.3s;
 }
 
-.btn- { background-color: #A7D129; }
-.btn-meh { background-color: #ffd630; }
-.btn-great { background-color: #3faa2e; }
-.btn-bad { background-color: #e3372e; }
+.btn- { background-color: #A7D129; color: white;}
+.btn-meh { background-color: #ffd630; color: white;}
+.btn-great { background-color: #3faa2e; color: white;}
+.btn-bad { background-color: #e3372e; color: white;}
 
 .btn-prompt {
   background-color: #9C88FF;

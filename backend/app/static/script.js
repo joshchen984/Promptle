@@ -124,7 +124,7 @@ function timer() {
   const timerElement = document.querySelector('.timer');
   timerElement.classList.remove('timer-bad');
 
-  let timeRemaining = 60; // 60 seconds for 1 minute
+  let timeRemaining = 10; // 60 seconds for 1 minute
 
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
