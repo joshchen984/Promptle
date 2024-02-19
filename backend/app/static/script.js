@@ -177,10 +177,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function closeModal() {
   startHandler();
-  var modal = document.getElementById('startModal');
-  var overlay = document.getElementById('overlay');
-  modal.style.display = 'none';
-  overlay.style.display = 'none';
+ 
+
+  setTimeout(function(){
+    var modal = document.getElementById('startModal');
+    var overlay = document.getElementById('overlay');
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+    },750);
+  
+  
 }
 
 function openModal(modal) {
