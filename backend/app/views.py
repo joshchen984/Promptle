@@ -30,6 +30,7 @@ def index():
 @app.route("/generate/game", methods=["POST"])
 def generate_game():
     # TODO: make it so only authorized users can generate
+    return
     keywords = generate_keywords()
     prompt = generate_prompt(keywords)
     image_url = generate_image(prompt)
@@ -87,11 +88,3 @@ def get_random_image():
         for doc in res:
             return json.loads(json_util.dumps(doc))
     return "No images found", 204
-
-
-@app.route("/test", methods=["GET"])
-def test():
-    url = save_image_cloud(
-        "https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg"
-    )
-    return url
