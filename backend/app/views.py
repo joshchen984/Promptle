@@ -13,6 +13,7 @@ import io
 import requests
 
 from app.generate import generate_image, generate_keywords, generate_prompt
+from app.image_storage import save_image_cloud
 
 load_dotenv()
 client = openai.OpenAI()
@@ -29,17 +30,14 @@ def index():
 @app.route("/generate/game", methods=["POST"])
 def generate_game():
     # TODO: make it so only authorized users can generate
-    return
     keywords = generate_keywords()
     prompt = generate_prompt(keywords)
-    image = generate_image(prompt)
-
-    response = requests.get(image, timeout=10)
+    image_url = generate_image(prompt)
 
     image = {
         "keywords": keywords.split(","),
         "prompt": prompt,
-        "image": io.BytesIO(response.content).getvalue(),
+        "image_url": save_image_cloud(image_url),
     }
 
     mongo.db.images.insert_one(image)
@@ -89,3 +87,11 @@ def get_random_image():
         for doc in res:
             return json.loads(json_util.dumps(doc))
     return "No images found", 204
+
+
+@app.route("/test", methods=["GET"])
+def test():
+    url = save_image_cloud(
+        "https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg"
+    )
+    return url

@@ -8,10 +8,6 @@ const yThresh = 0.6;
 let gameImage = {};
 let gameScore = 0;
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function similarity(word1, word2) {
   const url = `/similarity?word1=${word1}&word2=${word2}`;
   return fetch(url)
@@ -161,13 +157,11 @@ function startHandler() {
   wordButtonsContainer.textContent = '';
 
   document.getElementById('wordGuess').value = '';
-  fetch('/images')
+  fetch('/random-image')
     .then((response) => response.json())
     .then((data) => {
-      const len = Object.keys(data).length;
-      gameImage = data[getRandomInt(len)];
-      document.getElementById('game-image').src =
-        'data:image/png;base64,' + gameImage.image['$binary'].base64;
+      gameImage = data;
+      document.getElementById('game-image').src = gameImage.image_url;
       prompt = gameImage['prompt'];
       wordComp = gameImage['keywords'];
       wordCompString = wordComp.join(',').replace(/\s+/g, '');
