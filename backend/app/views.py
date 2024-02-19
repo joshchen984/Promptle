@@ -46,18 +46,18 @@ def generate_game():
 
 def similarity_list(word1, wordArray):
     words_array = wordArray.split(",")
-    print(words_array)
     word1_embedding = nlp(word1).vector.reshape(1, -1)
     maxSim = 0
-    maxSimWord = ''
+    maxSimWord = ""
     for word in words_array:
         word2_embedding = nlp(word).vector.reshape(1, -1)
         similarity_score = cosine_similarity(word1_embedding, word2_embedding)[0][0]
-        if (similarity_score > maxSim):
+        if similarity_score > maxSim:
             maxSim = similarity_score
             maxSimWord = word
-    
+
     return maxSim, maxSimWord
+
 
 @app.route("/similarity", methods=["GET"])
 def word_similarity():
@@ -67,7 +67,7 @@ def word_similarity():
     maxSim, maxSimWord = similarity_list(word1, wordArray)
 
     return str(maxSim) + " " + maxSimWord
- 
+
 
 @app.route("/images", methods=["GET"])
 def get_images():
