@@ -13,6 +13,7 @@ import io
 import requests
 
 from app.generate import generate_image, generate_keywords, generate_prompt
+from app.image_storage import save_image_cloud
 
 load_dotenv()
 client = openai.OpenAI()
@@ -32,14 +33,12 @@ def generate_game():
     return
     keywords = generate_keywords()
     prompt = generate_prompt(keywords)
-    image = generate_image(prompt)
-
-    response = requests.get(image, timeout=10)
+    image_url = generate_image(prompt)
 
     image = {
         "keywords": keywords.split(","),
         "prompt": prompt,
-        "image": io.BytesIO(response.content).getvalue(),
+        "image_url": save_image_cloud(image_url),
     }
 
     mongo.db.images.insert_one(image)
