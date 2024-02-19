@@ -13,7 +13,7 @@ function getRandomInt(max) {
 }
 
 function similarity(word1, word2) {
-  const url = `http://localhost:5000/similarity?word1=${word1}&word2=${word2}`;
+  const url = `/similarity?word1=${word1}&word2=${word2}`;
   return fetch(url)
     .then((response) => response.text())
     .then((similarityScore) => {
