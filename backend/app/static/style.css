@@ -128,15 +128,16 @@ button {
   transition: background-color 0.3s;
 }
 
-.btn- { background-color: #A7D129; }
-.btn-meh { background-color: #ffd630; }
-.btn-great { background-color: #3faa2e; }
-.btn-bad { background-color: #e3372e; }
+.btn- { background-color: #A7D129; color: white; font-weight: bold;}
+.btn-meh { background-color: #ffd630; color: white; font-weight: bold;}
+.btn-great { background-color: #3faa2e; color: white; font-weight: bold;}
+.btn-bad { background-color: #e3372e; color: white; font-weight: bold;}
 
 .btn-prompt {
   background-color: #9C88FF;
   color: white;
   width: 100%;
+  font-weight: bold;
 }
 
 .btn-prompt:hover {
@@ -249,7 +250,7 @@ button {
 }
 
 .loader {
-  display: block;
+  display: none;
   border: 8px solid #f3f3f3; /* Light grey */
   border-top: 8px solid #3498db; /* Blue */
   border-radius: 50%;
@@ -371,4 +372,21 @@ button {
   25% { margin-left: 0.5rem; }
   75% { margin-left: -0.5rem; }
   100% { margin-left: 0rem; }
+}
+
+::-webkit-scrollbar {
+  width: 2.5px; /* Set width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9C88FF; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Border radius of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-button {
+  display: none;
 }
