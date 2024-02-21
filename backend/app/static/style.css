@@ -124,7 +124,7 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  cursor: default;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
@@ -132,6 +132,10 @@ button {
 .btn-meh { background-color: #ffd630; }
 .btn-great { background-color: #3faa2e; }
 .btn-bad { background-color: #e3372e; }
+
+.btn-word {
+  cursor: default;
+}
 
 .btn-prompt {
   background-color: #9C88FF;
