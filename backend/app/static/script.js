@@ -9,7 +9,7 @@ let gameImage = {};
 let gameScore = 0;
 
 function similarity(word1, word2) {
-  const url = `/similarity?word1=${word1}&word2=${word2}`;
+  const url = `/similarity-list?word1=${word1}&word2=${word2}`;
   return fetch(url)
     .then((response) => response.text())
     .then((similarityScore) => {
