@@ -1,16 +1,13 @@
+import json
 from flask import request, render_template
 from app import app
 from dotenv import load_dotenv
 import openai
-import numpy as np
 from flask_cors import CORS
 from sklearn.metrics.pairwise import cosine_similarity
 import spacy
 from flask_pymongo import PyMongo
-import json
 from bson import json_util
-import io
-import requests
 
 from app.generate import generate_image, generate_keywords, generate_prompt
 from app.image_storage import save_image_cloud

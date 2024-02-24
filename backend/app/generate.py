@@ -1,13 +1,9 @@
+import re
+import random
 import openai
 from dotenv import load_dotenv
-import re
-import spacy
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-import random
-from app.image_configuration import genres, environments
+from app.image_configuration import genres
 
-nlp = spacy.load("en_core_web_md")
 
 load_dotenv()
 client = openai.OpenAI()
