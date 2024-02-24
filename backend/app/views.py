@@ -29,10 +29,10 @@ def index():
 
 @app.route("/generate/game", methods=["POST"])
 def generate_game():
-    # TODO: make it so only authorized users can generate
     return
-    keywords = generate_keywords()
-    prompt = generate_prompt(keywords)
+    # TODO: make it so only authorized users can generate
+    prompt = generate_prompt()
+    keywords = generate_keywords(prompt)
     image_url = generate_image(prompt)
 
     image = {
@@ -62,6 +62,19 @@ def similarity_list(word1, wordArray):
 
 @app.route("/similarity", methods=["GET"])
 def word_similarity():
+    word1 = request.args.get("word1")
+    word2 = request.args.get("word2")
+
+    word1_embedding = nlp(word1).vector.reshape(1, -1)
+    word2_embedding = nlp(word2).vector.reshape(1, -1)
+
+    similarity_score = cosine_similarity(word1_embedding, word2_embedding)[0][0]
+
+    return str(similarity_score)
+
+
+@app.route("/similarity-list", methods=["GET"])
+def word_list_similarity():
     word1 = request.args.get("word1")
     wordArray = request.args.get("word2")
 
