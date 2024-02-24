@@ -29,10 +29,10 @@ def index():
 
 @app.route("/generate/game", methods=["POST"])
 def generate_game():
-    # TODO: make it so only authorized users can generate
     return
-    keywords = generate_keywords()
-    prompt = generate_prompt(keywords)
+    # TODO: make it so only authorized users can generate
+    prompt = generate_prompt()
+    keywords = generate_keywords(prompt)
     image_url = generate_image(prompt)
 
     image = {

@@ -4,6 +4,8 @@ import re
 import spacy
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+import random
+from app.image_configuration import genres, environments
 
 nlp = spacy.load("en_core_web_md")
 
@@ -11,18 +13,37 @@ load_dotenv()
 client = openai.OpenAI()
 
 
-def generate_prompt(keywords: str):
+def generate_prompt():
+    genre = random.choice(genres)
+    system_message = """
+        You are a prompt engineer and an expert in creating prompts for Dall-e. Limit all responses to 50 tokens please.
 
+        Here are some dall-e prompt tips:
+        Be Specific and Detailed: The more specific your prompt, the better the image quality. Include details like the setting, objects, colors, mood, and any specific elements you want in the image.
+
+        Mood and Atmosphere: Describe the mood or atmosphere you want to convey. Words like “serene,” “chaotic,” “mystical,” or “futuristic” can guide the AI in setting the right tone.
+
+        Use Descriptive Adjectives: Adjectives help in refining the image. For example, instead of saying “a dog,” say “a fluffy, small, brown dog.”
+
+        Consider Perspective and Composition: Mention if you want a close-up, a wide shot, a bird’s-eye view, or a specific angle. This helps in framing the scene correctly.
+
+        Specify Lighting and Time of Day: Lighting can dramatically change the mood of an image. Specify if it’s day or night, sunny or cloudy, or if there’s a specific light source like candlelight or neon lights.
+        Incorporate Action or Movement: If you want a dynamic image, describe actions or movements. For instance, “a cat jumping over a fence” is more dynamic than just “a cat.”
+
+        Avoid Overloading the Prompt: While details are good, too many can confuse the AI. Try to strike a balance between being descriptive and being concise.
+
+        Use Analogies or Comparisons: Sometimes it helps to compare what you want with something well-known, like “in the style of Van Gogh” or “resembling a scene from a fantasy novel.”
+    """
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",
-                "content": "You are a prompt engineer and an expert in creating prompts for Dall-e. Limit all responses to 50 tokens please.",
+                "content": system_message,
             },
             {
                 "role": "user",
-                "content": f"Generate a dall e prompt that incorporates the following keywords: [{keywords}]",
+                "content": f"Generate a dall e prompt that incorporates the following genre: {genre}",
             },
         ],
         max_tokens=50,
@@ -30,82 +51,31 @@ def generate_prompt(keywords: str):
     return completion.choices[0].message.content
 
 
-def remove_similar_keywords(keywords):
-    word_embeddings = [nlp(word).vector for word in keywords]
-    word_embeddings = np.array(word_embeddings)
+def generate_keywords(prompt: str):
+    message = f"""
+        List the 10 keywords that most describe the image created by this dall-e prompt. The keywords should be one word and easy for a person to guess from the image. Make the response one line and comma separated:
 
-    similarity_matrix = cosine_similarity(word_embeddings)
-
-    # True if keyword should be kept
-    kept_words = [True] * len(keywords)
-
-    threshold = 0.50
-    for i in range(len(word_embeddings) - 1):
-        for j in range(i + 1, len(word_embeddings)):
-            if similarity_matrix[i, j] >= threshold:
-                kept_words[i] = False
-                break
-
-    updated_keywords = [keyword for keyword, keep in zip(keywords, kept_words) if keep]
-
-    return updated_keywords
-
-
-def get_updated_keywords(keywords):
-    prompt = (
-        f"Create a comma-separated list of {10 - len(keywords)} keywords to use to generate an image. "
-        "The keywords shouldn't be related to any of the following keywords:"
-        f"{','.join(keywords)}"
-        ". Keep this in a single line."
-    )
+        {prompt}
+    """
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "user",
-                "content": prompt,
+                "content": message,
             },
         ],
         max_tokens=30,
     )
     result = completion.choices[0].message.content
-    # Getting rid of whitespace around commas
-    result = re.sub(r"\s*,\s*", ",", result).lower()
-    return result.split(",")
-
-
-def generate_keywords():
-    completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "user",
-                "content": "Create a comma-separated list of ten keywords to use to generate an image. Keep this in a single line.",
-            },
-        ],
-        max_tokens=30,
-    )
-    result = completion.choices[0].message.content
-    # Getting rid of whitespace around commas
-    result = re.sub(r"\s*,\s*", ",", result).lower()
-    keywords = result.split(",")
-    keywords = remove_similar_keywords(keywords)
-    while len(keywords) < 10:
-        new_keywords = get_updated_keywords(keywords)
-        new_keywords = remove_similar_keywords(new_keywords)
-        keywords = keywords + new_keywords
-
-    if len(keywords) > 10:
-        keywords = keywords[:10]
-    # Getting rid of whitespace around commas
-    return re.sub(r"\s*,\s*", ",", ",".join(keywords)).lower()
+    return re.sub(r"\s*,\s*", ",", result).lower()
 
 
 def generate_image(prompt):
     response = client.images.generate(
-        model="dall-e-2",
+        model="dall-e-3",
         prompt=prompt,
-        size="512x512",
+        size="1024x1024",
         quality="standard",
         n=1,
     )
